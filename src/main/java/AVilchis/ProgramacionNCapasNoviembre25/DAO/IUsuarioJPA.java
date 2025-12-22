@@ -14,4 +14,6 @@ public interface IUsuarioJPA {
     public Result Update(Usuario usuario);
 
     public Result Delete(int IdUsuario);
+
+//  public Result CambiarStatus(int IdUsuario, int status);
 }

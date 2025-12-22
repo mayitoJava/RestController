@@ -43,8 +43,8 @@ public class Usuario {
     private String Curp;
     @Column(name = "password")
     private String password;
-    @Column(name = "status")
-    private int status;
+//    @Column(name = "status")
+//    private int Status;
     @ManyToOne
     @JoinColumn (name = "idrol")
     public Rol Rol;
@@ -147,12 +147,12 @@ public class Usuario {
         this.password = password;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+//    public int getStatus() {
+//        return Status;
+//    }
+//
+//    public void setStatus(int status) {
+//        this.Status = status;
+//    }
     
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,4 +52,13 @@ public class UsuarioRestController {
         return ResponseEntity.status(result.StatusCode).body(result);
     }
 
+//    @PatchMapping("/status/{id}/{status}")
+//    public ResponseEntity<Result> CambiarStatus(
+//            @PathVariable int id,
+//            @PathVariable int status) {
+//
+//        Result result = usuarioJPADAOImplementation.CambiarStatus(id, status);
+//        return ResponseEntity.status(result.StatusCode).body(result);
+//    }
+    
 }
