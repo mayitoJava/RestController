@@ -4,6 +4,7 @@ import AVilchis.ProgramacionNCapasNoviembre25.JPA.Usuario;
 import AVilchis.ProgramacionNCapasNoviembre25.JPA.Result;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,11 +20,84 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA {
         Result result = new Result();
         try {
             TypedQuery<Usuario> queryUsuario = entityManager.createQuery("FROM Usuario", Usuario.class);
-            List<Usuario> usuarios = queryUsuario.getResultList(); 
+            List<Usuario> usuarios = queryUsuario.getResultList();
             result.Object = usuarios;
             result.Correct = true;
             result.StatusCode = 200;
-        }catch (Exception ex){
+        } catch (Exception ex) {
+            result.Correct = false;
+            result.ErrorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+            result.StatusCode = 400;
+        }
+        return result;
+    }
+
+    @Transactional
+    @Override
+    public Result GetById(int IdUsuario) {
+        Result result = new Result();
+        try {
+            Usuario usuarioid = entityManager.find(Usuario.class, IdUsuario);
+            result.Object = usuarioid;
+            result.Correct = true;
+            result.StatusCode = 200;
+        } catch (Exception ex) {
+            result.Correct = false;
+            result.ErrorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+            result.StatusCode = 400;
+        }
+        return result;
+    }
+
+    @Transactional
+    @Override
+    public Result Add(Usuario usuario) {
+        Result result = new Result();
+        try {
+            entityManager.persist(usuario);
+            result.Object = usuario;
+            result.Correct = true;
+            result.StatusCode = 201;
+        } catch (Exception ex) {
+            result.Correct = false;
+            result.ErrorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+            result.StatusCode = 400;
+        }
+        return result;
+    }
+
+    @Transactional
+    @Override
+    public Result Update(Usuario usuario) {
+        Result result = new Result();
+        try {
+            entityManager.merge(usuario);
+            result.Object = usuario;
+            result.Correct = true;
+            result.StatusCode = 200;
+        } catch (Exception ex) {
+            result.Correct = false;
+            result.ErrorMessage = ex.getLocalizedMessage();
+            result.ex = ex;
+            result.StatusCode = 400;
+        }
+        return result;
+    }
+
+    @Transactional
+    @Override
+    public Result Delete(int IdUsuario) {
+        Result result = new Result();
+        try {
+            Usuario usuario = entityManager.find(Usuario.class, IdUsuario);
+            entityManager.remove(usuario);
+
+            result.Correct = true;
+            result.StatusCode = 200;
+        } catch (Exception ex) {
             result.Correct = false;
             result.ErrorMessage = ex.getLocalizedMessage();
             result.ex = ex;
