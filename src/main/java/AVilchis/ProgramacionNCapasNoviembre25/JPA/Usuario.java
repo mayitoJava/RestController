@@ -1,6 +1,5 @@
 package AVilchis.ProgramacionNCapasNoviembre25.JPA;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,6 +43,8 @@ public class Usuario {
     private String Curp;
     @Column(name = "password")
     private String password;
+    @Column(name = "status")
+    private int status;
     @ManyToOne
     @JoinColumn (name = "idrol")
     public Rol Rol;
@@ -144,6 +145,14 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
     
 }

@@ -47,7 +47,7 @@ public class UsuarioRestController {
 
     @DeleteMapping("/{IdUsuario}")
     public ResponseEntity Delete(@PathVariable int IdUsuario) {
-       Result result = usuarioJPADAOImplementation.Delete(IdUsuario);
+        Result result = usuarioJPADAOImplementation.Delete(IdUsuario);
         return ResponseEntity.status(result.StatusCode).body(result);
     }
 
