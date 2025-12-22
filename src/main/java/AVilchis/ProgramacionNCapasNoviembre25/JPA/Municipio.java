@@ -21,7 +21,6 @@ public class Municipio {
     private String Nombre;
     @ManyToOne
     @JoinColumn(name = "idestado")
-    @JsonIgnore
     public Estado Estado;
 
     public int getIdMunicipio() {

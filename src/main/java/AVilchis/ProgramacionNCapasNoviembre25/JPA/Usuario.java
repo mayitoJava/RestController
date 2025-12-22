@@ -46,10 +46,8 @@ public class Usuario {
     private String password;
     @ManyToOne
     @JoinColumn (name = "idrol")
-    @JsonIgnore
     public Rol Rol;
     @OneToMany(mappedBy = "usuario",cascade=CascadeType.ALL,orphanRemoval = true)
-    @JsonIgnore
     public List<Direccion> Direcciones = new ArrayList<>();
 
     public int getIdUsuario() {

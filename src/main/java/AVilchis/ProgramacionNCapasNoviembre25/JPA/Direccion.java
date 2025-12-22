@@ -30,7 +30,6 @@ public class Direccion {
     public Usuario usuario;
     @ManyToOne
     @JoinColumn(name = "idcolonia")
-    @JsonIgnore
     public Colonia Colonia;
 
     public int getIdDireccion() {

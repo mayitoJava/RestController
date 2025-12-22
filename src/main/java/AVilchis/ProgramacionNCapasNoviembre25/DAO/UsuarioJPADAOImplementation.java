@@ -18,7 +18,7 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA {
     public Result GetAll() {
         Result result = new Result();
         try {
-            TypedQuery<Usuario> queryUsuario = entityManager.createQuery("FROM usuarioJPA", Usuario.class);
+            TypedQuery<Usuario> queryUsuario = entityManager.createQuery("FROM Usuario", Usuario.class);
             List<Usuario> usuarios = queryUsuario.getResultList(); 
             result.Object = usuarios;
             result.Correct = true;
