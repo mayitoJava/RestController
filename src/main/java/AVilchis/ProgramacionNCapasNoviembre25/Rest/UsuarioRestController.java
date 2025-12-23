@@ -52,13 +52,13 @@ public class UsuarioRestController {
         return ResponseEntity.status(result.StatusCode).body(result);
     }
 
-//    @PatchMapping("/status/{id}/{status}")
-//    public ResponseEntity<Result> CambiarStatus(
-//            @PathVariable int id,
-//            @PathVariable int status) {
-//
-//        Result result = usuarioJPADAOImplementation.CambiarStatus(id, status);
-//        return ResponseEntity.status(result.StatusCode).body(result);
-//    }
+    @PatchMapping("/status/{id}/{status}")
+    public ResponseEntity<Result> CambiarStatus(
+            @PathVariable int id,
+            @PathVariable int status) {
+
+        Result result = usuarioJPADAOImplementation.CambiarStatus(id, status);
+        return ResponseEntity.status(result.StatusCode).body(result);
+    }
     
 }
