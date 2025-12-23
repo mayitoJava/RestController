@@ -5,6 +5,7 @@ import AVilchis.ProgramacionNCapasNoviembre25.JPA.Result;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -105,7 +106,7 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA {
         }
         return result;
     }
-    
+
     @Transactional
     @Override
     public Result CambiarStatus(int IdUsuario, int status) {
@@ -131,6 +132,34 @@ public class UsuarioJPADAOImplementation implements IUsuarioJPA {
             result.ex = ex;
             result.StatusCode = 400;
         }
+        return result;
+    }
+
+    @Override
+    public Result GetAllDinamico(Usuario usuario) {
+        Result result = new Result();
+
+        // Evitar null
+        String nombre = usuario.getNombre() == null ? "" : usuario.getNombre();
+        String apellidoPaterno = usuario.getApellidoPaterno() == null ? "" : usuario.getApellidoPaterno();
+        String apellidoMaterno = usuario.getApellidoMaterno() == null ? "" : usuario.getApellidoMaterno();
+
+        String jpql = "FROM Usuario "
+                + "WHERE UPPER(Nombre) LIKE UPPER(:nombre) "
+                + "AND UPPER(ApellidoPaterno) LIKE UPPER(:apellidoPaterno) "
+                + "AND UPPER(ApellidoMaterno) LIKE UPPER(:apellidoMaterno)";
+
+        TypedQuery<Usuario> queryUsuarios
+                = entityManager.createQuery(jpql, Usuario.class);
+
+        queryUsuarios.setParameter("nombre", "%" + nombre + "%");
+        queryUsuarios.setParameter("apellidoPaterno", "%" + apellidoPaterno + "%");
+        queryUsuarios.setParameter("apellidoMaterno", "%" + apellidoMaterno + "%");
+
+        result.Object = queryUsuarios.getResultList();
+        result.StatusCode = 200;
+        result.Correct = true;
+
         return result;
     }
 

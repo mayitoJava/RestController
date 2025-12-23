@@ -60,5 +60,11 @@ public class UsuarioRestController {
         Result result = usuarioJPADAOImplementation.CambiarStatus(id, status);
         return ResponseEntity.status(result.StatusCode).body(result);
     }
-    
+
+    @PostMapping("/GetAllDinamico")
+    public ResponseEntity getAllD(@RequestBody Usuario usuario) {
+        Result result = usuarioJPADAOImplementation.GetAllDinamico(usuario);
+        return ResponseEntity.status(result.StatusCode).body(result);
+    }
+
 }
