@@ -34,7 +34,7 @@ public class UsuarioRestController {
         return ResponseEntity.status(result.StatusCode).body(result);
     }
 
-    @PostMapping
+    @PostMapping("/agregar")
     public ResponseEntity Add(@RequestBody Usuario usuario) {
         Result result = usuarioJPADAOImplementation.Add(usuario);
         return ResponseEntity.status(result.StatusCode).body(result);
