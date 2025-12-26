@@ -13,6 +13,7 @@ import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "usuario")
@@ -30,6 +31,7 @@ public class Usuario {
     @Column(name = "telefono")
     private String Telefono;
     @Column(name = "fechanacimiento")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date FechaNacimiento;
     @Column(name = "username")
     private String Username;

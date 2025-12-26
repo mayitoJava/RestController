@@ -25,7 +25,7 @@ public class DireccionRestController {
         return ResponseEntity.status(result.StatusCode).body(result);
     }
     
-     @PutMapping
+     @PutMapping("editar")
     public ResponseEntity Update(@RequestBody Direccion direccion) {
         Result result = direccionJPADAOImplementation.Update(direccion);
         return ResponseEntity.status(result.StatusCode).body(result);

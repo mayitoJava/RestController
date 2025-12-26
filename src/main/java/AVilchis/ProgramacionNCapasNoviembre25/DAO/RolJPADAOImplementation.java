@@ -18,9 +18,9 @@ public class RolJPADAOImplementation implements IRolJPA{
     public Result GetAll(){
         Result result = new Result();
         try {
-            TypedQuery<Rol> queryRol = entityManager.createQuery("FROM Roles", Rol.class);
-            List<Rol> rol = queryRol.getResultList();
-            result.Object = rol;
+            TypedQuery<Rol> queryRol = entityManager.createQuery("FROM Rol", Rol.class);
+            List<Rol> roles = queryRol.getResultList();
+            result.Object = roles;
             result.Correct = true;
             result.StatusCode = 200;
         } catch (Exception ex) {
