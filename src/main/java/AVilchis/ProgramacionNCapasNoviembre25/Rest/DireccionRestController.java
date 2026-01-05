@@ -6,6 +6,7 @@ import AVilchis.ProgramacionNCapasNoviembre25.JPA.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,16 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/direccion")
 public class DireccionRestController {
-    @Autowired 
+
+    @Autowired
     DireccionJPADAOImplementation direccionJPADAOImplementation;
-    
+
+    @GetMapping("/{IdDireccion}")
+    public ResponseEntity GetById(@PathVariable("IdDireccion") int IdDireccion) {
+        Result result = direccionJPADAOImplementation.GetById(IdDireccion);
+        return ResponseEntity.status(result.StatusCode).body(result);
+    }
+
     @PostMapping("agregar/{IdUsuario}")
-    public ResponseEntity Add(@PathVariable("IdUsuario") int IdUsuario, @RequestBody Direccion direccion){
+    public ResponseEntity Add(@PathVariable("IdUsuario") int IdUsuario, @RequestBody Direccion direccion) {
         Result result = direccionJPADAOImplementation.Add(direccion, IdUsuario);
         return ResponseEntity.status(result.StatusCode).body(result);
     }
-    
-     @PutMapping("editar")
+
+    @PutMapping("editar")
     public ResponseEntity Update(@RequestBody Direccion direccion) {
         Result result = direccionJPADAOImplementation.Update(direccion);
         return ResponseEntity.status(result.StatusCode).body(result);
