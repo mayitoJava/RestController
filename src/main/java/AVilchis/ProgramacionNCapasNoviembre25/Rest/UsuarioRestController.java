@@ -5,9 +5,9 @@ import AVilchis.ProgramacionNCapasNoviembre25.JPA.Result;
 import AVilchis.ProgramacionNCapasNoviembre25.JPA.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,7 +34,7 @@ public class UsuarioRestController {
         return ResponseEntity.status(result.StatusCode).body(result);
     }
 
-    @PostMapping("/agregar")
+    @PostMapping
     public ResponseEntity Add(@RequestBody Usuario usuario) {
         Result result = usuarioJPADAOImplementation.Add(usuario);
         return ResponseEntity.status(result.StatusCode).body(result);
@@ -52,7 +52,8 @@ public class UsuarioRestController {
         return ResponseEntity.status(result.StatusCode).body(result);
     }
 
-    @PatchMapping("/status/{id}/{status}")
+    @CrossOrigin(origins = "*")
+    @PutMapping("/status/{id}/{status}")
     public ResponseEntity<Result> CambiarStatus(
             @PathVariable int id,
             @PathVariable int status) {

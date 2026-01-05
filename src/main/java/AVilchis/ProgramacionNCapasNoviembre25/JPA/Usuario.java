@@ -13,7 +13,6 @@ import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "usuario")

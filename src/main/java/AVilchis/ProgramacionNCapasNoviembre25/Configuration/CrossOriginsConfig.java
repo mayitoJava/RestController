@@ -18,6 +18,7 @@ public class CrossOriginsConfig {
         corsConfiguration.addAllowedMethod("PUT");
         corsConfiguration.addAllowedMethod("DELETE");
         corsConfiguration.addAllowedMethod("PATCH");
+        corsConfiguration.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(source);
     }
