@@ -21,7 +21,7 @@ public class UsuarioRestController {
 
     @Autowired
     UsuarioJPADAOImplementation usuarioJPADAOImplementation;
-
+    
     @GetMapping
     public ResponseEntity GetAll() {
         Result result = usuarioJPADAOImplementation.GetAll();
