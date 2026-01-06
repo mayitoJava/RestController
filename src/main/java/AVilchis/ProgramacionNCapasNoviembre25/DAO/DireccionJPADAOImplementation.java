@@ -84,7 +84,7 @@ public class DireccionJPADAOImplementation implements IDireccionJPA {
     public Result GetById(int IdDireccion) {
         Result result = new Result();
         try {
-            Usuario direccionid = entityManager.find(Usuario.class, IdDireccion);
+            Direccion direccionid = entityManager.find(Direccion.class, IdDireccion);
             result.Object = direccionid;
             result.Correct = true;
             result.StatusCode = 200;
